@@ -244,6 +244,19 @@ a {
       /* Firefox 18- */
       color: #ffffff;
       font-family: National-Light; }
+  .contact-panel .form-group md-input-container {
+    padding: 0px;
+    margin: 0px; }
+    .contact-panel .form-group md-input-container label {
+      display: none; }
+    .contact-panel .form-group md-input-container input[type="search"] {
+      background: transparent;
+      border: 2px solid #ffffff;
+      color: #ffffff;
+      height: 32px;
+      margin-left: 20px;
+      padding: 10px;
+      width: 180px; }
   .contact-panel .form-btn {
     display: block;
     margin: 0 auto;

@@ -1,18 +1,20 @@
-var formApp = angular.module('formApp', []);
+  'use strict';
+  angular
+    .module('MyApp')
+    .controller('formCtrl', formCtrl);
 
-formApp.controller('formCtrl', function($scope, $http) {
-
-		$scope.searchLocations = "A";
-
-    $http({
-        method : "GET",
-        url : "https://previewme.bbtdevelopment.com/api/v1/static/autocomplete/location?",
-    		headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        params: {q: $scope.searchLocations, country_id: 156},
-    }).then(function mySuccess(response) {
-        $scope.countries = response.data;
-
-    }, function myError(response) {
-        
-    });
-});
+  function formCtrl($http, $scope) {
+    var self = this;
+    
+    self.data = null;
+    self.selectedItem = null;
+    self.searchText = null;
+    
+    self.querySearch = function (query) {
+      
+       $http.get('https://previewme.bbtdevelopment.com/api/v1/static/autocomplete/location?q=' + escape(query) + '&country_id=156').then(function(result) {
+          self.data = result.data.data;
+          return result.data.data;
+        });
+    }
+  }

@@ -3,8 +3,10 @@
 <html>
 <head>
 	<title></title>
+	<% require themedCSS('/angular-material') %>
 	<% require themedCSS('bootstrap/bootstrap') %>
 	<% require themedCSS('/custom') %>
+
 </head>
 <body>
 
@@ -71,7 +73,7 @@
 			</div>
 
 			<div class="row contact-panel">
-				<div class="col-md-12" ng-app="formApp" ng-controller="formCtrl">
+				<div class="col-md-12 autocompletedemoFloatingLabel" ng-controller="formCtrl as ctrl" ng-app="MyApp" layout="column" ng-cloak="">
 					<h3>Contact us today</h3>
 					<p>
 						Brief intro paragraph about this section. Bis porepelent quam nam ut reaptam facillo riberum sitatur aut proreperiata volorer.
@@ -85,15 +87,25 @@
 						<input type="text" name="book" placeholder="Book a meeting*">
 						<input type="text" name="preferredDay" placeholder="Preferred day*">
 						<input type="text" name="prefereredTime" placeholder="Preferred time*">
-					</div>
-					<div class="form-group">
-						<input type="text" name="location" placeholder="Location" ng-model="searchLocations">
-
-					   <ul class="country">
-			        <li ng-repeat="country in countries.data | filter: searchLocations">
-			          <span>{{country.display_name}}</span>
-			        </li>
-			      </ul>
+					</div>			
+					<div class="form-group col-md-6 col-md-offset-3">
+			      <md-autocomplete md-floating-label="Favorite movie" 
+			                      flex="" 
+			                      md-item-text="item.display_name"
+			                      md-items="item in ctrl.data" 
+			                      md-search-text-change="ctrl.querySearch(ctrl.searchText)"
+			                      md-search-text="ctrl.searchText" 
+			                      md-selected-item="ctrl.selectedItem" 
+			                      md-no-cache="ctrl.noCache" 
+			                      md-input-maxlength="30"
+			                      md-input-minlength="2"
+			                      md-input-name="autocompleteField" 
+			                      required=""
+			                      class="col-md-12 locAutocomplete">
+			        <md-item-template>
+			          <span md-highlight-text="ctrl.searchText">{{item.display_name}}</span>
+			        </md-item-template>
+			      </md-autocomplete>
 					</div>
 					<div class="form-group">
 						<textarea placeholder="Message*"></textarea>
@@ -102,6 +114,7 @@
 						<button class="btn btn-default">Submit</button>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</main>
@@ -143,9 +156,24 @@
 			</div>
 		</div>
 	</footer>
-
+<!--
 	<script type="text/javascript" src="{$ThemeDir}/node_modules/angular/angular.min.js"></script>
+	<script type="text/javascript" src="{$ThemeDir}/node_modules/angular/angular-material.min.js"></script>
 	<script type="text/javascript" src="{$ThemeDir}/javascript/jquery.min.js"></script>
+	<script type="text/javascript" src="{$ThemeDir}/css/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="{$ThemeDir}/javascript/autocomplete.js"></script>
+-->
+
+
+	<script type="text/javascript" src="../javascript/jquery.min.js"></script>
+
+  <script src='{$ThemeDir}/node_modules/angular/angular1.4.6.js'></script>
+  <script src='{$ThemeDir}/node_modules/angular/angular-animate.min.js'></script>
+  <script src='{$ThemeDir}/node_modules/angular/angular-route.min.js'></script>
+  <script src='{$ThemeDir}/node_modules/angular/angular-aria.min.js'></script>
+  <script src='{$ThemeDir}/node_modules/angular/angular-messages.min.js'></script>
+  <script src='{$ThemeDir}/node_modules/angular/angular-material.js'></script>
+  <script src='{$ThemeDir}/node_modules/angular/assets-cache.js'></script>
 	<script type="text/javascript" src="{$ThemeDir}/css/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="{$ThemeDir}/javascript/location.js"></script>
 </body>
